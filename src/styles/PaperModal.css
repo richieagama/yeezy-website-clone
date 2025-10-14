@@ -1,0 +1,124 @@
+/* overlay covers viewport - clicking overlay calls onClose immediately */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background: rgba(250,250,249,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* paper sheet itself - slides in from the right via keyframes */
+.paper-sheet{
+  width:min(920px, 92vw);
+  max-height:86vh;
+  background-image: linear-gradient(white, white), url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  background-blend-mode:multiply;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow: var(--paper-shadow);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  animation: sheet-slide-in 420ms cubic-bezier(.2,.9,.25,1) both;
+}
+
+/* slide-in from right */
+@keyframes sheet-slide-in{
+  from { transform: translateX(28px) scale(.995); opacity: 0; }
+  to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Header & footer look like printer text */
+.paper-header, .paper-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+  font-size:12px;
+  color:#6b7280;
+  background:transparent;
+  flex-shrink:0;
+  border-bottom:1px solid rgba(0,0,0,0.03);
+}
+.paper-footer{
+  border-top:1px solid rgba(0,0,0,0.03);
+  border-bottom:none;
+  margin-top:auto;
+}
+
+/* center column for header */
+.paper-header .center, .paper-footer .center{
+  flex:1;
+  text-align:center;
+  font-weight:700;
+  color:#111827;
+}
+
+/* Body layout: image left, details right on desktop; stack on mobile */
+.paper-body{
+  display:grid;
+  gap:16px;
+  padding:14px;
+  align-items:start;
+}
+
+/* mobile: single column */
+@media(max-width:760px){
+  .paper-body{ grid-template-columns: 1fr; }
+}
+
+/* desktop: two columns */
+@media(min-width:761px){
+  .paper-body{ grid-template-columns: 1fr 1fr; }
+}
+
+/* image */
+.paper-image{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px;
+}
+.paper-image img{
+  max-width: 50%;
+  max-height:66vh;
+  object-fit:contain;
+  border-radius:6px;
+}
+
+/* info column */
+.paper-info{ padding:8px 6px; display:flex; flex-direction:column; gap:8px; }
+.paper-title{ font-size:20px; font-weight:800; margin:0; }
+.paper-desc{ color:#374151; font-size:14px; line-height:1.45; margin:0; }
+.paper-price{ font-size:18px; font-weight:900; color:#111827; }
+.paper-specs{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; color:#6b7280; background: rgba(0,0,0,0.02); padding:8px; border-radius:6px; font-size:12px; }
+
+/* actions */
+.paper-actions{ display:flex; gap:8px; margin-top:8px; align-items:center; }
+.btn-primary{
+  background:#111827;
+  color:#fff;
+  padding:10px 12px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+.btn-secondary{
+  background:transparent;
+  border:1px solid rgba(0,0,0,0.08);
+  color:#111827;
+  padding:10px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* footer small text layout */
+.paper-footer .footer-left, .paper-footer .footer-center, .paper-footer .footer-right{
+  font-size:12px;
+  color:#6b7280;
+}

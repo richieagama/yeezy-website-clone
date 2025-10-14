@@ -93,8 +93,8 @@ export default function App() {
     <div className="app-root">
       <main className="site-container">
         <header className="hero">
-          <h1 className="brand">Portfolio / richieagama@gmail.com</h1>
-          <p className="sub">Menu</p>
+          <h1 className="brand">dieselkennedy.com</h1>
+          <p className="sub"></p> {/* <p className="note">Click a product for details</p> */ }
         </header>
 
         <ProductGrid products={PRODUCTS} onSelect={(p) => setSelected(p)} />

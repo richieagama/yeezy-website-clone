@@ -1,0 +1,27 @@
+
+@font-face {
+  font-family: 'VCR_OSD_MONO';
+  src: url('/public/fonts/VCR_OSD_MONO.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'hv-mono';
+  src: url('/public/fonts/hv-mono.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'ocr';
+  src: url('/public/fonts/ocr.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  font-family: 'ocr', sans-serif;
+}

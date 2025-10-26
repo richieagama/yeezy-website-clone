@@ -16,21 +16,34 @@
   max-height:86vh;
   background-image: linear-gradient(white, white), url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   background-blend-mode:multiply;
-  border-radius:8px;
-  border:1px solid rgba(0,0,0,0.06);
-  box-shadow: var(--paper-shadow);
+  /* border-radius:8px; */
+  /* border:1px solid rgba(0,0,0,0.06); */
+      border: solid rgba(50, 50, 93, 0.15) 1px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  /* box-shadow: var(--paper-shadow); */
   overflow:hidden;
   display:flex;
   flex-direction:column;
-  animation: sheet-slide-in 420ms cubic-bezier(.2,.9,.25,1) both;
-
+  /* animation: sheet-slide-in 420ms cubic-bezier(.2,.9,.25,1) both; */
+animation: 0.5s ease-out 0s forwards slide-in;
 }
 
-/* slide-in from right */
-@keyframes sheet-slide-in{
+@keyframes slide-in{
+  0%{
+    transform: translateX(-100vw);
+  }
+  100%{
+    transform: translateX(0vw);
+
+  }
+}
+
+/* slide-in from right (nasty version) */
+/* @keyframes sheet-slide-in{
   from { transform: translateX(28px) scale(.995); opacity: 0; }
   to { transform: translateX(0) scale(1); opacity: 1; }
-}
+} */
 
 /* Header & footer look like printer text */
 .paper-header, .paper-footer{

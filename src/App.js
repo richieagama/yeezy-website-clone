@@ -4,85 +4,40 @@ import PaperModal from "./components/PaperModal";
 import "./styles/App.css";
 
 /**
- * Sample products - replace image paths with real files you put in public/images/
+ * Sample products
  */
 const PRODUCTS = [
   {
     id: "HT-01",
-    name: "TS-01",
-    price: "$49.99",
-    image: "/images/HT-01.png",
-    description: "Classic lightweight cotton tee. Perfect for daily wear.",
-    specs: "100% cotton • Machine wash • Fits true to size",
+    name: "TS-o1",
+    price: "$29.99",
+    image: "/images/product1-1.png",
+    description: "Classic heavy cotton tee. Perfect for daily wear.",
+    specs: "100% cotton fits drop shoulder • Heavyweight • Soft fit",
   },
   {
     id: "HT-02",
-    name: "TS-01",
-    price: "$89.00",
-    image: "/images/HT-01.png",
-    description: "Soft fleece-lined pullover hoodie with roomy pocket.",
-    specs: "80% cotton / 20% polyester • Heavyweight • Warm fit",
+    name: "TS-o2",
+    price: "$29.99",
+    image: "/images/product2-2.png",
+    description: "Classic heavy cotton tee. Perfect for daily wear.",
+    specs: "100% cotton fits drop shoulder • Heavyweight • Soft fit",
   },
   {
     id: "HT-03",
-    name: "TS-01",
-    price: "$129.00",
-    image: "/images/HT-01.png",
-    description: "Lightweight windbreaker that packs small into its pocket.",
+    name: "HT-o1",
+    price: "$20.00",
+    image: "/images/product3-3.png",
+    description: "Durable shell all-weather comfort.",
     specs: "Water resistant • Packable • Breathable",
   },
   {
     id: "HT-04",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
-  },
-
-  {
-    id: "HT-05",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
-  },
-  
-  {
-    id: "LS-06",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
-  },
-
-  {
-    id: "HT-07",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
-  },
-
-  {
-    id: "HT-08",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
-  },
-
-  {
-    id: "HT-09",
-    name: "TS-01",
-    price: "$59.00",
-    image: "/images/HT-01.png",
-    description: "Long sleeve, slim fit with clean seams.",
-    specs: "Modal-blend • Breathable knit • Slim fit",
+    name: "HT-o2",
+    price: "$20.00",
+    image: "/images/product4-4.png",
+    description: "Durable shell all-weather comfort.",
+    specs: "Modal-blend • Breathable knit • UNISEX fit",
   }
 ];
 
@@ -93,7 +48,7 @@ export default function App() {
     <div className="app-root">
       <main className="site-container">
         <header className="hero">
-          <h1 className="brand">dieselkennedy.com</h1>
+          <h1 className="brand">Untitled Header H1</h1>
           <p className="sub"></p> {/* <p className="note">Click a product for details</p> */ }
         </header>
 

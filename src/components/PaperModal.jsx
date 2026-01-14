@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "../styles/PaperModal.css";
+import ProductImageSlider from "./ProductImageSlider";
+
 
 /**
  * PaperModal:
@@ -31,18 +33,23 @@ export default function PaperModal({ product, onClose }) {
         onClick={(e) => e.stopPropagation()} // prevent clicks inside from closing
       >
         <div className="paper-header">
-          <div className="left">ITEM DETAILS</div>
-          <div className="center">PRODUCT SHEET</div>
-          <div className="right">{product.id}</div>
+          <div className="left type">1/13/26, 11:42 PM</div>
+          <div className="center type">bsktbl-pdp-Hat-Mockup.png</div>
+          <div className="right type">[i]</div>
         </div>
 
         <div className="paper-body">
           <div className="paper-image">
-            <img
+            {/* <img
               src={product.image}
               alt={product.name}
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = `https://via.placeholder.com/640x480.png?text=${encodeURIComponent(product.id)}`; }}
-            />
+            /> */}
+            <div className="paper-content">
+  <ProductImageSlider images={product.images} />
+
+
+</div>
           </div>
 
           <div className="paper-info">
@@ -58,19 +65,20 @@ export default function PaperModal({ product, onClose }) {
                 className="btn-primary"
                 onClick={() => alert(`${product.name} added to cart (demo)`)}
               >
-                Add to cart
+                Add
               </button>
               <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
-                More details
+                Details
               </button>
             </div>
           </div>
         </div>
 
         <div className="paper-footer">
-          <div className="footer-left">Printed: {new Date().toLocaleDateString()}</div>
-          <div className="footer-center">/file/path/{product.id}.jpg</div>
-          <div className="footer-right">v1.0</div>
+          <div className="footer-left type">{product.id}/3</div>
+                    {/* <div className="footer-left">Printed: {new Date().toLocaleDateString()}</div> */}
+          {/* <div className="footer-center type">34.103158, -118.285103</div> */}
+          <div className="footer-right type">{product.filepath}</div>
         </div>
       </div>
     </div>

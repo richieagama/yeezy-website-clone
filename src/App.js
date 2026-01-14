@@ -6,38 +6,49 @@ import "./styles/App.css";
 /**
  * Sample products
  */
-const PRODUCTS = [
-  {
-    id: "HT-01",
-    name: "TS-o1",
-    price: "$29.99",
-    image: "/images/product1-1.png",
-    description: "Classic heavy cotton tee. Perfect for daily wear.",
-    specs: "100% cotton fits drop shoulder • Heavyweight • Soft fit",
-  },
-  {
-    id: "HT-02",
-    name: "TS-o2",
-    price: "$29.99",
-    image: "/images/product2-2.png",
-    description: "Classic heavy cotton tee. Perfect for daily wear.",
-    specs: "100% cotton fits drop shoulder • Heavyweight • Soft fit",
-  },
-  {
-    id: "HT-03",
-    name: "HT-o1",
-    price: "$20.00",
+const home_products = [
+    {
+    id: 1,
+    name: "HT-01",
+    images: [
+      "/images/product3-3.png",
+      "/images/product3-3.png",
+      "/images/product3-3.png"
+    ],
+    price: "$120",
+    description: "Sample description",
     image: "/images/product3-3.png",
-    description: "Durable shell all-weather comfort.",
-    specs: "Water resistant • Packable • Breathable",
+    date: "2024-01-01",
+    filepath: "file://C:/Users/RichardAgama/Documents/HT-01.png"
   },
   {
-    id: "HT-04",
-    name: "HT-o2",
-    price: "$20.00",
+    id: 2,
+    name: "HT-02",
+    images: [
+      "/images/product4-4.png",
+      "/images/product4-4.png",
+      "/images/product4-4.png"
+    ],
+    price: "$120",
+    description: "Sample description",
     image: "/images/product4-4.png",
-    description: "Durable shell all-weather comfort.",
-    specs: "Modal-blend • Breathable knit • UNISEX fit",
+    date: "2024-01-01",
+    filepath: "file://C:/Users/RichardAgama/Documents/HT-01.png"
+
+  },
+  {
+    id: 3,
+    name: "HT-03",
+    images: [
+      "/images/product5-5.png",
+      "/images/product5-5.png",
+      "/images/product5-5.png"
+    ],
+    price: "$140",
+    description: "Sample description",
+    image: "/images/product5-5.png",
+    date: "2024-01-01",
+    filepath: "file://C:/Users/RichardAgama/Documents/HT-01.png"
   }
 ];
 
@@ -48,11 +59,11 @@ export default function App() {
     <div className="app-root">
       <main className="site-container">
         <header className="hero">
-          <h1 className="brand">Untitled Header H1</h1>
+          <h1 className="brand">http://bsktbl.com/</h1>
           <p className="sub"></p> {/* <p className="note">Click a product for details</p> */ }
         </header>
 
-        <ProductGrid products={PRODUCTS} onSelect={(p) => setSelected(p)} />
+        <ProductGrid products={home_products} onSelect={(p) => setSelected(p)} />
       </main>
 
       {selected && (

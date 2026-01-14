@@ -13,7 +13,7 @@
 /* paper sheet itself - slides in from the right via keyframes */
 .paper-sheet{
   width:min(920px, 92vw);
-  min-height:95vh;
+  min-height:auto;
   /* background-image: linear-gradient(white, white), url("/public/images/paper-bg-o1.png"); */
   /* background-blend-mode:multiply; */
   /* background-size: contain; */
@@ -82,7 +82,7 @@ animation: 0.5s ease-out 0s forwards slide-in;
   gap:16px;
   padding:14px;
   align-items:center;
-  height: 85vh;
+  height: auto;
 }
 
 /* mobile: single column */
@@ -141,3 +141,101 @@ animation: 0.5s ease-out 0s forwards slide-in;
   font-size:12px;
   color:#6b7280;
 }
+
+
+/* Type Animation */
+
+@keyframes letters {
+  from {
+      left: 0;
+  }
+  to {
+      left: 50ch;
+  }
+}
+@keyframes lines {
+  from {
+      top: 0;
+  }
+  to {
+      top: 100%;
+  }
+}
+@keyframes cursor-type {
+  50% {
+      border-color: #000;
+  }
+}
+@keyframes cursor-wait {
+  0% {
+      box-shadow: inset 2px 0 0 0 rgba(0, 0, 0, 0);
+  }
+  1% {
+      box-shadow: inset 2px 0 0 0 rgba(0, 0, 0, 1);
+  }
+  40% {
+      box-shadow: inset 2px 0 0 0 rgba(0, 0, 0, 1);
+  }
+}
+.type {
+  position: relative;
+  width: auto;
+  line-height: 1.2;
+  word-break: break-all;
+  overflow: hidden;
+  font-size: 14px;
+  background: transparent;
+}
+@supports (width: 1ch) {
+  .type:before,
+  .type:after {
+      box-sizing: border-box;
+      content: " ";
+      position: absolute;
+      z-index: 1;
+      display: block;
+      height: 1.2em;
+      width: 100%;
+      background-color: #fff;
+  }
+  .type:before {
+      border-left: 2px solid transparent;
+      top: 100%;
+      animation-name: letters, lines, cursor-type, cursor-wait;
+      animation-fill-mode: both, both, both, backwards;
+  }
+  .type:after {
+      content: " ";
+      height: 100%;
+      top: 100%;
+      left: 0;
+      margin-top: 1.2em;
+  }
+}
+.type:before {
+  animation-duration: 1.4285714286s, 1.4285714286s, 0.0285714286s, 0.8s;
+  animation-timing-function: steps(50, end), steps(1, end), step-end, ease-out;
+  animation-iteration-count: 1, 1, 35, 2;
+  animation-delay: 0.2s, 0.2s, 0.2s, 0.2s;
+}
+.type:after {
+  animation: lines 0.8s steps(1, end) 1;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+  /* transparent added for mobile glitch */
+  background: transparent;
+  
+}
+.type + .type:before {
+  animation-duration: 1.4285714286s, 1.4285714286s, 0.0285714286s, 0.8s;
+  animation-timing-function: steps(50, end), steps(1, end), step-end, ease-out;
+  animation-iteration-count: 1, 1, 35, 2;
+  animation-delay: 0s, 0s, 0s, 0s;
+}
+.type + .type:after {
+  animation: lines 0.8s steps(1, end) 1;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+}
+
+/* END OF Type Animation */

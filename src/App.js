@@ -59,7 +59,7 @@ export default function App() {
     <div className="app-root">
       <main className="site-container">
         <header className="hero">
-          <h1 className="brand">http://bsktbl.com/</h1>
+          <h1 className="brand">http://localhost:3000/</h1>
           <p className="sub"></p> {/* <p className="note">Click a product for details</p> */ }
         </header>
 

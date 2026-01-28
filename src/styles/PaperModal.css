@@ -72,7 +72,7 @@ animation: 0.5s ease-out 0s forwards slide-in;
 .paper-header .center, .paper-footer .center{
   flex:1;
   text-align:center;
-  font-weight:700;
+  
   color:#111827;
 }
 
@@ -232,31 +232,54 @@ animation: 0.5s ease-out 0s forwards slide-in;
 
 /* END OF Type Animation */
 
+/* PAPER PDP TABLE */
 
+.paper-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.paper-table tr{
+  display: flex;
+  justify-content: space-between;
+      border-top: solid #000000 1px;
+    padding: 4px 0px 0px 2px;
+    margin: 1px 0px 0px 0px;
+}
+
+.paper-table th{
+  font-size: 12px;
+  font-weight: normal;
+  text-align: left;
+  min-width: 150px;
+}
+
+/* END OF PAPER PDP TABLE */
 
 /* XL Desktop (1999px - 2999px) */
 @media screen and (min-width: 1999px) and (max-width: 2999px) { 
-  .paper-body{border: solid red 3px;}
+  /* .paper-body{border: solid red 3px;} */
 }
 
 /* Large Desktop (1200px - 1999px) */
 @media screen and (min-width: 1200px) and (max-width: 1999px) { 
-  .paper-body{border: solid lightgreen 3px;}
+  /* .paper-body{border: solid lightgreen 3px;} */
 }
 
 /* Desktop Layout (1025px - 1199px) */
 @media screen and (min-width: 1025px) and (max-width: 1199px) { 
-  .paper-body{border: solid blue 3px;}
+  /* .paper-body{border: solid blue 3px;} */
 }
 
 /* Laptop Layout (768px - 1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .paper-body{border: solid yellow 3px;}
+  /* .paper-body{border: solid yellow 3px;} */
  }
 
 /* Mobile Layout (<768px) */
 @media screen and (max-width: 767px) {
-  .paper-body{border: solid blueviolet 3px;}
+  /* .paper-body{border: solid blueviolet 3px;} */
   .paper-header .left, .paper-header .center, .paper-header .right {font-size:6px;}
   .paper-footer .center {font-size: 6px; color: fuchsia;}
   .paper-footer .footer-left, .paper-footer .footer-right{font-size: 6px;}

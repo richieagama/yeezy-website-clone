@@ -22,6 +22,9 @@
 }
 
 
+
+
 body {
-  font-family: 'ocr', sans-serif;
+  /* font-family: 'VCR_OSD_MONO', sans-serif; */
+  font-family: monospace;
 }

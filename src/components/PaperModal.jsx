@@ -52,8 +52,8 @@ export default function PaperModal({ product, onClose }) {
 </div>
           </div>
 
-          <div className="paper-info">
-            <h2 className="paper-title">{product.name}</h2>
+          {/* <div className="paper-info"> */}
+            {/* <h2 className="paper-title">{product.name}</h2>
             <p className="paper-desc">{product.description}</p>
 
             <div className="paper-price">{product.price}</div>
@@ -71,7 +71,47 @@ export default function PaperModal({ product, onClose }) {
                 Details
               </button>
             </div>
+          </div> */}
+
+          <div className="paper-info">
+            <h2 className="paper-title">{product.name}</h2>
+            <table className="paper-table">
+              <tr>
+                <th>Item Name</th>
+                <th>Distressed HT</th>
+              </tr>
+
+              <tr>
+                <th>Frame</th>
+                <th>5 Panel</th>
+              </tr>
+
+                <tr>
+                  <th>Year</th>
+                  <th>2026</th>
+              </tr>
+
+              <tr>
+                <th>Price</th>
+                <th>$40</th>
+              </tr>
+            </table>
+            
+
+            <div className="paper-actions">
+              <button
+                className="btn-primary"
+                onClick={() => alert(`${product.name} added to cart (demo)`)}
+              >
+                Add
+              </button>
+              <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
+                Details
+              </button>
+            </div>
           </div>
+
+          
         </div>
 
         <div className="paper-footer">

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import { useTransform } from "framer-motion";
+
 import "../styles/PaperModal.css";
 import ProductImageSlider from "./ProductImageSlider";
+
 
 
 /**
@@ -11,6 +15,8 @@ import ProductImageSlider from "./ProductImageSlider";
  * - Mobile-first responsive
  */
 export default function PaperModal({ product, onClose }) {
+
+
   useEffect(() => {
     // close on Escape
     const handleEsc = (e) => {
@@ -22,16 +28,67 @@ export default function PaperModal({ product, onClose }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
+
+
+
+    // Motion value for horizontal drag
+  const x = useMotionValue(0);
+  
+  // const overlayOpacity = useTransform(x, [-220, 0, 220], [0.08, 0.35, 0.08]);
+
+  // Tune these:
+  const DISMISS_DISTANCE = 140;  // px dragged
+  const DISMISS_VELOCITY = 900;  // px/sec swipe speed
+
+  const handleDragEnd = (_event, info) => {
+    const dragged = info.offset.x;      // total distance dragged
+    const velocity = info.velocity.x;   // swipe velocity
+
+    const shouldDismiss =
+      Math.abs(dragged) > DISMISS_DISTANCE ||
+      Math.abs(velocity) > DISMISS_VELOCITY;
+
+    if (shouldDismiss) {
+      // Slide the paper off-screen in the swipe direction, then close.
+      const direction = dragged > 0 ? 1 : -1;
+      animate(x, direction * window.innerWidth, {
+        type: "spring",
+        stiffness: 260,
+        damping: 28,
+        onComplete: onClose,
+      });
+    } else {
+      // Snap back to center
+      animate(x, 0, { type: "spring", stiffness: 260, damping: 22 });
+    }
+  };
+
+
+
+
   // Overlay click directly calls onClose (immediate)
   return (
-    <div className="modal-overlay" onClick={() => onClose()}>
-      <div
+    <motion.div className="modal-overlay"  onClick={() => onClose()}>
+
+      <motion.div
         className="paper-sheet"
         role="dialog"
         aria-modal="true"
         aria-label={`${product.name} details`}
-        onClick={(e) => e.stopPropagation()} // prevent clicks inside from closing
+        onClick={(e) => e.stopPropagation()}  // clicking inside does not close
+        // ENTRY animation: from right to center
+        initial={{ x: 80, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 140, damping: 18 }}
+        // DRAG behavior
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }} // we control dismissal manually
+        dragElastic={0.18} // a little stretch
+        style={{ x }}
+        onDragEnd={handleDragEnd}
       >
+
+
         <div className="paper-header">
           <div className="left type">1/13/26, 11:42 PM</div>
           <div className="center type">bsktbl-pdp-Hat-Mockup.png</div>
@@ -120,7 +177,11 @@ export default function PaperModal({ product, onClose }) {
           {/* <div className="footer-center type">34.103158, -118.285103</div> */}
           <div className="footer-right type">{product.filepath}</div>
         </div>
-      </div>
-    </div>
+
+
+      </motion.div>
+    
+    
+    </motion.div>
   );
 }

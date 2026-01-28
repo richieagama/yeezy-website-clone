@@ -29,8 +29,11 @@
   overflow:hidden;
   display:flex;
   flex-direction:column;
+
+  /* old animation without framer-motion */
+  /* animation: 0.5s ease-out 0s forwards slide-in; */
   /* animation: sheet-slide-in 420ms cubic-bezier(.2,.9,.25,1) both; */
-animation: 0.5s ease-out 0s forwards slide-in;
+
 }
 
 @keyframes slide-in{
@@ -281,6 +284,6 @@ animation: 0.5s ease-out 0s forwards slide-in;
 @media screen and (max-width: 767px) {
   /* .paper-body{border: solid blueviolet 3px;} */
   .paper-header .left, .paper-header .center, .paper-header .right {font-size:6px;}
-  .paper-footer .center {font-size: 6px; color: fuchsia;}
+  /* .paper-footer .center {font-size: 6px; color: fuchsia;} */
   .paper-footer .footer-left, .paper-footer .footer-right{font-size: 6px;}
  }

@@ -5,11 +5,9 @@ import { useTransform } from "framer-motion";
 import "../styles/PaperModal.css";
 import ProductImageSlider from "./ProductImageSlider";
 
-
-
 /**
  * PaperModal:
- * - Slides in from the RIGHT (CSS animation)
+ * - Slides in from the RIGHT (framer motion)
  * - Clicking overlay (outside paper) calls onClose() immediately
  * - Clicking inside paper does not close (we stopPropagation)
  * - Mobile-first responsive
@@ -31,35 +29,69 @@ export default function PaperModal({ product, onClose }) {
 
 
 
-    // Motion value for horizontal drag
+  // Motion value for horizontal drag
   const x = useMotionValue(0);
+  const y = useMotionValue(0);
   
   // const overlayOpacity = useTransform(x, [-220, 0, 220], [0.08, 0.35, 0.08]);
 
   // Tune these:
-  const DISMISS_DISTANCE = 140;  // px dragged
-  const DISMISS_VELOCITY = 900;  // px/sec swipe speed
+  const DISMISS_X = 140;
+  const DISMISS_Y = 140;
+  const DISMISS_VX = 900; // px/s
+  const DISMISS_VY = 900; // px/s
 
   const handleDragEnd = (_event, info) => {
-    const dragged = info.offset.x;      // total distance dragged
-    const velocity = info.velocity.x;   // swipe velocity
 
-    const shouldDismiss =
-      Math.abs(dragged) > DISMISS_DISTANCE ||
-      Math.abs(velocity) > DISMISS_VELOCITY;
+    // console.log(info);
 
-    if (shouldDismiss) {
-      // Slide the paper off-screen in the swipe direction, then close.
-      const direction = dragged > 0 ? 1 : -1;
-      animate(x, direction * window.innerWidth, {
-        type: "spring",
-        stiffness: 260,
-        damping: 28,
-        onComplete: onClose,
-      });
-    } else {
-      // Snap back to center
-      animate(x, 0, { type: "spring", stiffness: 260, damping: 22 });
+    const dx = info.offset.x;
+    const dy = info.offset.y;
+    const vx = info.velocity.x;
+    const vy = info.velocity.y;
+
+    const dismissByDistance = Math.abs(dx) > DISMISS_X || Math.abs(dy) > DISMISS_Y;
+    const dismissByVelocity = Math.abs(vx) > DISMISS_VX || Math.abs(vy) > DISMISS_VY;
+
+    if (dismissByDistance || dismissByVelocity) {
+
+      //decide which axis wins (stronger gesture)
+      const useX = Math.abs(dx) * 1.0 + Math.abs(vx) * 0.2 >= Math.abs(dy) * 1.0 + Math.abs(vy) * 0.2;
+
+      if(useX){
+        const dirX = (dx !== 0 ? Math.sign(dx) : Math.sign(vx || 1));
+
+        animate(x, dirX * window.innerWidth, {
+          type: "spring",
+          stiffness: 260,
+          damping: 28,
+          onComplete: onClose,
+        });
+
+        //keep y stable during x-dismiss
+        animate(y, 0, {type: "spring", stiffness: 260, damping: 28});
+
+      }else{
+        const dirY = (dy !== 0 ? Math.sign(dy) : Math.sign(vy || 1));
+
+        animate(y, dirY * window.innerHeight, {
+          type: "spring",
+          stiffness: 260,
+          damping: 28,
+          onComplete: onClose,
+        });
+
+        //keep x stable during y-dismiss
+        animate(x, 0, {type: "spring", stiffness: 260, damping: 28});
+
+      }
+
+
+    }else{
+      //else snap back to center
+      animate(x, 0, {type: "spring", stiffness: 260, damping: 22});
+      animate(y, 0, {type: "spring", stiffness: 260, damping: 22});
+
     }
   };
 
@@ -74,17 +106,19 @@ export default function PaperModal({ product, onClose }) {
         className="paper-sheet"
         role="dialog"
         aria-modal="true"
-        aria-label={`${product.name} details`}
+
+        
         onClick={(e) => e.stopPropagation()}  // clicking inside does not close
+        
         // ENTRY animation: from right to center
-        initial={{ x: 80, opacity: 0 }}
+        initial={{ x: -580, opacity: 1 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 140, damping: 18 }}
         // DRAG behavior
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }} // we control dismissal manually
+        drag
+        dragConstraints={{ left: 0, right: 0 , top: 0, bottom: 0}} // we control dismissal manually
         dragElastic={0.18} // a little stretch
-        style={{ x }}
+        style={{ x, y }}
         onDragEnd={handleDragEnd}
       >
 
@@ -150,9 +184,12 @@ export default function PaperModal({ product, onClose }) {
 
               <tr>
                 <th>Price</th>
+
                 <th>$40</th>
               </tr>
             </table>
+            
+
             
 
             <div className="paper-actions">
@@ -160,11 +197,11 @@ export default function PaperModal({ product, onClose }) {
                 className="btn-primary"
                 onClick={() => alert(`${product.name} added to cart (demo)`)}
               >
-                Add
+                Add to Cart
               </button>
-              <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
+              {/* <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
                 Details
-              </button>
+              </button> */}
             </div>
           </div>
 

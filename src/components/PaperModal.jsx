@@ -130,41 +130,10 @@ export default function PaperModal({ product, onClose }) {
         </div>
 
         <div className="paper-body">
-          <div className="paper-image">
-            {/* <img
-              src={product.image}
-              alt={product.name}
-              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = `https://via.placeholder.com/640x480.png?text=${encodeURIComponent(product.id)}`; }}
-            /> */}
-            <div className="paper-content">
-  <ProductImageSlider images={product.images} />
-
-
-</div>
-          </div>
-
-          {/* <div className="paper-info"> */}
-            {/* <h2 className="paper-title">{product.name}</h2>
-            <p className="paper-desc">{product.description}</p>
-
-            <div className="paper-price">{product.price}</div>
-
-            <div className="paper-specs">{product.specs}</div>
-
-            <div className="paper-actions">
-              <button
-                className="btn-primary"
-                onClick={() => alert(`${product.name} added to cart (demo)`)}
-              >
-                Add
-              </button>
-              <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
-                Details
-              </button>
-            </div>
-          </div> */}
-
-          <div className="paper-info">
+          
+          
+          <div class="item1">
+                      <div className="paper-info">
             <h2 className="paper-title">{product.name}</h2>
             <table className="paper-table">
               <tr>
@@ -199,13 +168,22 @@ export default function PaperModal({ product, onClose }) {
               >
                 Add to Cart
               </button>
-              {/* <button className="btn-secondary" onClick={() => alert("More details (demo)")}>
-                Details
-              </button> */}
             </div>
           </div>
-
+          </div>
           
+          <div class="item2">
+            
+            <div className="paper-image">
+              <div className="paper-content">
+                <ProductImageSlider images={product.images} />
+              </div>
+            </div>
+
+          </div>
+          <div class="item3">Item3</div>
+          
+
         </div>
 
         <div className="paper-footer">

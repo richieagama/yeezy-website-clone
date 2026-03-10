@@ -129,62 +129,27 @@ export default function PaperModal({ product, onClose }) {
           <div className="right type">[i]</div>
         </div>
 
-        <div className="paper-body">
-          
-          
-          <div class="item1">
-                      <div className="paper-info">
-            <h2 className="paper-title">{product.name}</h2>
-            <table className="paper-table">
-              <tr>
-                <th>Item Name</th>
-                <th>Distressed HT</th>
-              </tr>
+<div className="paper-body">
+  
+  <div className="item1">
+    item1
+  </div>
+  
+  <div className="item2">
+    item2
+  </div>
 
-              <tr>
-                <th>Frame</th>
-                <th>5 Panel</th>
-              </tr>
+  <div className="item3">
+    item3
+  </div>
+  
+  <div className="item4">
+    item4
+  </div>
 
-                <tr>
-                  <th>Year</th>
-                  <th>2026</th>
-              </tr>
+  <div className="item5">Item5</div>
 
-              <tr>
-                <th>Price</th>
-
-                <th>$40</th>
-              </tr>
-            </table>
-            
-
-            
-
-            <div className="paper-actions">
-              <button
-                className="btn-primary"
-                onClick={() => alert(`${product.name} added to cart (demo)`)}
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-          </div>
-          
-          <div class="item2">
-            
-            <div className="paper-image">
-              <div className="paper-content">
-                <ProductImageSlider images={product.images} />
-              </div>
-            </div>
-
-          </div>
-          <div class="item3">Item3</div>
-          
-
-        </div>
+</div>
 
         <div className="paper-footer">
           <div className="footer-left type">{product.id}/3</div>

@@ -79,42 +79,61 @@
   color:#111827;
 }
 
-/* Body layout grid area */
-.paper-body{
-  display:grid;
-  /* gap:16px; */
-  padding:14px;
+.paper-body {
+  display: grid;
+  padding: 0;
   height: auto;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, auto);
   grid-template-areas:
-    "a a b"
-    "a a b"
-    "c c c";
-  
-  
-
+    "a a a b b"
+    "a a a b b"
+    "c c c c c"
+    "d d d d d"
+    "e e e e e";
+  gap: 0;
 }
 
- /* GRID AREA */
+.item1 { grid-area: a; background: seashell; }
+.item2 { grid-area: b; background: red; }
+.item3 { grid-area: c; background: blue; }
+.item4 { grid-area: d; background: green; }
+.item5 { grid-area: e; background: yellow; }
 
-.paper-body > div {
-  border: 1px solid black;
-  padding: 1em;
-  
+/* -------- TABLE BASE STYLING -------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.item1 {
-  grid-area: a;
+th {
+  text-align: left;
+  font-weight: 600;
+  padding: 4px 8px 4px 5px;
+  white-space: nowrap;
 }
-.item2 {
-  grid-area: b;
+
+td {
+  text-align: left;
+  padding: 4px 8px;
 }
-.item3 {
-  grid-area: c;
+
+/* -------- ITEM-SPECIFIC ADJUSTMENTS -------- */
+
+.item2 th,
+.item2 td {
+  font-size: 50px;
 }
-/* END OF GRID AREA */
+
+.item3 td {
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.item4 th {
+  width: 200px; /* keeps label column aligned */
+}
 
 
 
@@ -320,3 +339,7 @@
 
 
 
+
+
+
+ 

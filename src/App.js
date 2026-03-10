@@ -64,6 +64,8 @@ export default function App() {
         </header>
 
         <ProductGrid products={home_products} onSelect={(p) => setSelected(p)} />
+
+
       </main>
 
       {selected && (

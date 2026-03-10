@@ -95,9 +95,9 @@
 }
 
 .item1 { grid-area: a; background: seashell; }
-.item2 { grid-area: b; background: red; }
-.item3 { grid-area: c; background: blue; }
-.item4 { grid-area: d; background: green; }
+.item2 { grid-area: b; background: pink; }
+.item3 { grid-area: c; background: paleturquoise; }
+.item4 { grid-area: d; background: palegreen; }
 .item5 { grid-area: e; background: yellow; }
 
 /* -------- TABLE BASE STYLING -------- */

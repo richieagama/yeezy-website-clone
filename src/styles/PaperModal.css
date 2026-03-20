@@ -94,13 +94,175 @@
   gap: 0;
 }
 
-.item1 { grid-area: a; background: seashell; }
-.item2 { grid-area: b; background: pink; }
-.item3 { grid-area: c; background: paleturquoise; }
-.item4 { grid-area: d; background: palegreen; }
-.item5 { grid-area: e; background: yellow; }
+/* ---- GRID AREA ITEMS ---- */
 
-/* -------- TABLE BASE STYLING -------- */
+.item1 {
+  grid-area: a;
+  background: #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.item2 {
+  grid-area: b;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.item3 {
+  grid-area: c;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  min-height: 100px;
+}
+
+.item4 {
+  grid-area: d;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  padding: 0;
+}
+
+.item5 {
+  grid-area: e;
+  background: #fff;
+  padding: 5px 10px;
+}
+
+/* ---- ITEM1: SLIP HEADER BLOCK ---- */
+
+.slip-brand {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+  padding-bottom: 4px;
+}
+
+.slip-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px 6px;
+  font-size: 10px;
+}
+
+.slip-label {
+  font-weight: 600;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.slip-contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 10px;
+  border-top: 1px solid #000;
+  padding-top: 4px;
+  margin-top: 2px;
+}
+
+/* ---- ITEM2: ITEM NAME BLOCK ---- */
+
+.item-name-label {
+  font-size: 11px;
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.item-name-value {
+  font-size: clamp(22px, 3.8vw, 44px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+/* ---- ITEM3: QTY / BRAND / BARCODE BAND ---- */
+
+.qty-large {
+  font-size: clamp(32px, 5.5vw, 68px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-stripes {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.brand-stripes span {
+  display: block;
+  width: 13px;
+  height: 52px;
+  background: #000;
+  transform: skewX(-14deg);
+}
+
+.brand-word {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.barcode-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.barcode-bars {
+  width: 130px;
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000 0px,  #000 2px,  #fff 2px,  #fff 4px,
+    #000 4px,  #000 5px,  #fff 5px,  #fff 8px,
+    #000 8px,  #000 10px, #fff 10px, #fff 12px,
+    #000 12px, #000 14px, #fff 14px, #fff 16px,
+    #000 16px, #000 17px, #fff 17px, #fff 20px,
+    #000 20px, #000 23px, #fff 23px, #fff 25px,
+    #000 25px, #000 26px, #fff 26px, #fff 29px,
+    #000 29px, #000 32px, #fff 32px, #fff 34px
+  );
+}
+
+.barcode-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---- ITEM4: PRODUCT TABLE ---- */
 
 table {
   width: 100%;
@@ -110,29 +272,26 @@ table {
 th {
   text-align: left;
   font-weight: 600;
-  padding: 4px 8px 4px 5px;
+  font-size: 11px;
+  padding: 5px 8px 5px 5px;
   white-space: nowrap;
+  letter-spacing: 0.06em;
 }
 
 td {
   text-align: left;
-  padding: 4px 8px;
+  font-size: 11px;
+  padding: 5px 8px;
 }
 
-/* -------- ITEM-SPECIFIC ADJUSTMENTS -------- */
+/* ---- ITEM5: FOOTER STRIP ---- */
 
-.item2 th,
-.item2 td {
-  font-size: 50px;
-}
-
-.item3 td {
-  max-width: 100%;
-  word-wrap: break-word;
-}
-
-.item4 th {
-  width: 200px; /* keeps label column aligned */
+.slip-footer-strip {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 0.05em;
 }
 
 

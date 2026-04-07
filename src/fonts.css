@@ -21,10 +21,22 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'VT323';
+  src: url('/public/fonts/VT323-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-
+@font-face {
+  font-family: 'LibreBarcode128Text';
+  src: url('/public/fonts/LibreBarcode128Text-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   /* font-family: 'VCR_OSD_MONO', sans-serif; */
-  font-family: monospace;
+  font-family: 'VT323', monospace;
+  /* font-family: monospace; */
 }

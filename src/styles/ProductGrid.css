@@ -12,18 +12,7 @@
 
 }
 
-/* bigger screens */
-@media(min-width:640px){
-  .product-grid{
-    grid-template-columns:repeat(3, minmax(0,1fr));
-  }
-}
 
-@media(min-width:980px){
-  .product-grid{
-    grid-template-columns:repeat(9, minmax(0,1fr));
-  }
-}
 
 /* Card */
 .product-card{
@@ -54,3 +43,45 @@
 
 .product-name{ font-weight:700; font-size:14px; color:#111827; }
 .product-price{ margin-top:6px; font-weight:800; color:#111827; font-size:14px; }
+
+/* XL Desktop (1999px - 2999px) */
+@media screen and (min-width: 1999px) and (max-width: 2999px) { 
+  .product-grid{
+    border: solid 1px red;
+    grid-template-columns:repeat(6, minmax(0,1fr));
+  }
+}
+
+/* Large Desktop (1200px - 1999px) */
+@media screen and (min-width: 1200px) and (max-width: 1999px) {
+  .product-grid{
+    border: solid 1px lightgreen;
+    grid-template-columns:repeat(6, minmax(0,1fr));
+  }
+}
+
+/* Desktop Layout (1025px - 1199px) */
+@media screen and (min-width: 1025px) and (max-width: 1199px) { 
+  .product-grid{
+    border: solid 1px blue;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+  }
+}
+
+/* Laptop Layout (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .product-grid{
+    border: solid 1px yellow;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+  }
+ }
+
+/* Mobile Layout (<768px) */
+@media screen and (max-width: 767px) {
+  .product-grid{
+    border: solid 1px pink;
+    grid-template-columns:repeat(4, minmax(0,1fr));
+  
+  }
+ }
+

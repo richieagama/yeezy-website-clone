@@ -155,16 +155,14 @@ export default function PaperModal({ product, onClose }) {
   </div>
 
   <div className="item3">
-    <div className="qty-large">{product.price}</div>
+    
     <div className="brand-block">
-      <div className="brand-stripes">
-        <span /><span /><span />
-      </div>
-      <div className="brand-word">PORTFOLIO</div>
+      <ProductImageSlider images={product.images} />
     </div>
     <div className="barcode-block">
-      <div className="barcode-bars" />
-      <div className="barcode-label">R.AGAMA · {new Date(product.date).getFullYear()}</div>
+      <div className="qty-large">{product.price}</div>
+      <div className="barcode-bars">03815402</div>
+      <div className="barcode-label">0010010100 {/*new Date(product.date).getFullYear()*/}</div>
     </div>
   </div>
 

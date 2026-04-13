@@ -132,7 +132,7 @@ export default function PaperModal({ product, onClose }) {
 <div className="paper-body">
 
   <div className="item1">
-    <div className="slip-brand">PORTFOLIO</div>
+    <div className="slip-brand">PACKAGE</div>
     <div className="slip-meta-grid">
       <span className="slip-label">LOT #</span>
       <span className="slip-label">MONTH</span>

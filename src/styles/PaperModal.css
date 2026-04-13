@@ -12,8 +12,14 @@
 
 /* paper sheet itself - slides in from the right via keyframes */
 .paper-sheet{
+  /* side ways A4 paper width and height
   width:min(920px, 92vw);
   min-height:auto;
+*/
+  width:min(490px, 92vw);
+  min-height: 650px;
+
+
   /* background-image: linear-gradient(white, white), url("/public/images/paper-bg-o1.png"); */
   /* background-blend-mode:multiply; */
   /* background-size: contain; */
@@ -58,7 +64,7 @@
   align-items:center;
   justify-content:space-between;
   padding:10px 14px;
-  font-size:10px;
+  font-size:12px;
   color:#6b7280;
   background:transparent;
   flex-shrink:0;
@@ -75,7 +81,7 @@
 .paper-header .center, .paper-footer .center{
   flex:1;
   text-align:center;
-  font-size: 10px;
+  font-size: 12px;
   color: #696969;
   letter-spacing: 0.05em;
 }
@@ -122,7 +128,7 @@
 .item3 {
   grid-area: c;
   background: #fff;
-  border-bottom: 1px solid #000;
+  
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -146,7 +152,7 @@
 /* ---- ITEM1: SLIP HEADER BLOCK ---- */
 
 .slip-brand {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -174,9 +180,9 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  font-size: 10px;
+  font-size: 12px;
   border-top: 1px solid #000;
-  padding-top: 4px;
+  
   margin-top: 2px;
 }
 
@@ -229,7 +235,7 @@
 }
 
 .brand-word {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -334,7 +340,7 @@ td {
 
 /* footer small text layout */
 .paper-footer .footer-left, .paper-footer .footer-center, .paper-footer .footer-right{
-  font-size:10px;
+  font-size:12px;
   color:#6b7280;
 }
 
@@ -379,7 +385,7 @@ td {
   line-height: 1.2;
   word-break: break-all;
   overflow: hidden;
-  font-size: 10px;
+  font-size: 12px;
   background: transparent;
 }
 @supports (width: 1ch) {

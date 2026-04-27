@@ -9,15 +9,17 @@ import "./styles/App.css";
 const home_products = [
     {
     id: 1,
-    name: "HT-01",
+    name: "BL-01",
     images: [
-      "/images/product3-3.png",
-      "/images/product3-3.png",
-      "/images/product3-3.png"
+      "/images/BL-01-BLACK-1.webp",
+      "/images/BL-01-BLACK-2.webp",
+      "/images/BL-01-BLACK-3.webp",
+      "/images/BL-01-BLACK-4.webp",
+      "/images/BL-01-BLACK-5.webp"
     ],
     price: "$120",
     description: "Sample description",
-    image: "/images/product3-3.png",
+    image: "/images/BL-01-BLACK-1.webp",
     date: "2024-01-01",
     filepath: "file://C:/Users/RichardAgama/Documents/HT-01.png"
   },

@@ -137,11 +137,11 @@ export default function PaperModal({ product, onClose }) {
       <span className="slip-label">LOT #</span>
       <span className="slip-label">MONTH</span>
       <span className="slip-label">YEAR</span>
-      <span className="slip-label">ITEM #</span>
-      <span>001</span>
-      <span>{new Date(product.date).toLocaleString('default', { month: 'short' }).toUpperCase()}</span>
-      <span>{new Date(product.date).getFullYear()}</span>
-      <span>{String(product.id).padStart(3, '0')}</span>
+      {/* <span className="slip-label">ITEM #</span> */}
+      <span className="tung-tung-sahur">001</span>
+      <span className="tung-tung-sahur">{new Date(product.date).toLocaleString('default', { month: 'short' }).toUpperCase()}</span>
+      <span className="tung-tung-sahur">{new Date(product.date).getFullYear()}</span>
+      {/* <span className="tung-tung-sahur">{String(product.id).padStart(3, '0')}</span> */}
     </div>
     <div className="slip-contact-block">
       <div><span className="slip-label">FROM:</span> R. AGAMA</div>
@@ -171,7 +171,6 @@ export default function PaperModal({ product, onClose }) {
       <thead>
         <tr>
           <th>PRODUCT</th>
-          <th>NOTES</th>
           <th>QTY</th>
           <th>DESCRIPTION</th>
         </tr>
@@ -179,7 +178,6 @@ export default function PaperModal({ product, onClose }) {
       <tbody>
         <tr>
           <td>001&nbsp;&nbsp;{product.name.toUpperCase()}</td>
-          <td>—</td>
           <td>1</td>
           <td>{product.description}</td>
         </tr>

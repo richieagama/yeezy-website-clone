@@ -132,7 +132,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 14px 16px;
+  
+  padding: 0px 16px 6px 16px;
   min-height: 100px;
 }
 
@@ -156,29 +157,45 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  
+  padding-left: 4px;
   padding-bottom: 4px;
 }
 
 .slip-meta-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   
   font-size: 12px;
 }
+
+.slip-meta-grid .slip-label{
+  margin-left: 4px;
+}
+
+.slip-meta-grid .tung-tung-sahur{
+  padding-left: 4px;
+}
+
 
 .slip-label {
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  
   /* background: #e7e7e7; */
 
 }
 
-.slip-meta-grid .slip-label{
-  margin-left: 4px;
+.slip-meta-grid .slip-label {
+  border-right: 1px solid #000;
 }
+
+.slip-meta-grid .tung-tung-sahur{
+  border-right: 1px solid #000;
+} 
+
+
 
 .slip-contact-block {
   display: flex;
@@ -191,10 +208,12 @@
 /* ---- ITEM2: ITEM NAME BLOCK ---- */
 
 .item-name-label {
-  font-size: 11px;
+  font-size: clamp(30px, 1.8vw, 44px);
+  font-weight: 900;
   display: block;
   margin-bottom: 4px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
+  text-transform: uppercase;
 }
 
 .item-name-value {

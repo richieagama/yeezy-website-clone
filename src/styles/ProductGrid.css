@@ -3,13 +3,21 @@
 
 
 /* Product grid - mobile first */
+/* grid-template-columns is controlled via inline style from ProductGrid.jsx */
 .product-grid{
   display:grid;
   gap: 9px;
-  grid-template-columns:repeat(2, minmax(0,1fr));
+  grid-template-columns:repeat(6, minmax(0,1fr));
   padding:0px;
   margin: 0px auto;
+  /* hand pinch gesture to our JS handler, still allows scroll */
+  touch-action: pan-x pan-y;
+}
 
+/* framer-motion layout wrapper — must fill its grid cell */
+.product-grid-item {
+  width: 100%;
+  min-width: 0;
 }
 
 
@@ -64,7 +72,7 @@
 @media screen and (min-width: 1025px) and (max-width: 1199px) { 
   .product-grid{
     border: solid 1px blue;
-    grid-template-columns:repeat(4, minmax(0,1fr));
+    grid-template-columns:repeat(6, minmax(0,1fr));
   }
 }
 
@@ -72,7 +80,7 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .product-grid{
     border: solid 1px yellow;
-    grid-template-columns:repeat(4, minmax(0,1fr));
+    grid-template-columns:repeat(3, minmax(0,1fr));
   }
  }
 
@@ -80,7 +88,7 @@
 @media screen and (max-width: 767px) {
   .product-grid{
     border: solid 1px pink;
-    grid-template-columns:repeat(4, minmax(0,1fr));
+    grid-template-columns:repeat(3, minmax(0,1fr));
   
   }
  }

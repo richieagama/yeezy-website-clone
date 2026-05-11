@@ -1,49 +1,71 @@
-import React, { useEffect } from "react";
-import { motion, useMotionValue, animate } from "framer-motion";
-import { useTransform } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useMotionValue, useAnimationControls, animate } from "framer-motion";
 
 import "../styles/PaperModal.css";
 import ProductImageSlider from "./ProductImageSlider";
 
-/**
- * PaperModal:
- * - Slides in from the RIGHT (framer motion)
- * - Clicking overlay (outside paper) calls onClose() immediately
- * - Clicking inside paper does not close (we stopPropagation)
- * - Mobile-first responsive
- */
 export default function PaperModal({ product, onClose }) {
-
+  const [isDismissing, setIsDismissing] = useState(false);
 
   useEffect(() => {
-    // close on Escape
-    const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
+    const handleEsc = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
+  // Motion values — x/y for drag, rotate for gravity-fall tilt
+  const x      = useMotionValue(0);
+  const y      = useMotionValue(0);
+  const rotate = useMotionValue(0);
 
+  // Controls the overlay background independently from the paper child
+  const overlayControls = useAnimationControls();
 
+  // ── Overlay-click dismiss: gravity fall ────────────────────────────────────
+  const handleOverlayClick = () => {
+    if (isDismissing) return;
+    setIsDismissing(true);
 
-  // Motion value for horizontal drag
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  
-  // const overlayOpacity = useTransform(x, [-220, 0, 220], [0.08, 0.35, 0.08]);
+    // Fade the backdrop out while the paper is still visible and falling
+    overlayControls.start({
+      backgroundColor: "rgba(250,250,249,0)",
+      transition: { duration: 0.48, ease: "easeOut" },
+    });
 
-  // Tune these:
-  const DISMISS_X = 140;
-  const DISMISS_Y = 140;
-  const DISMISS_VX = 900; // px/s
-  const DISMISS_VY = 900; // px/s
+    // y: ease-in tween → simulates gravity (slow start, accelerates off-screen)
+    animate(y, window.innerHeight + 320, {
+      type: "tween",
+      duration: 0.54,
+      ease: [0.4, 0, 1, 0.48],
+      onComplete: onClose,
+    });
+
+    // random tilt between -10° and +10° — different every dismiss
+    const tiltDeg = (Math.random() * 10 - 5);
+
+    animate(rotate, tiltDeg, {
+      type: "spring",
+      stiffness: 95,
+      damping: 9,
+      mass: 1.2,
+    });
+
+    // x-drift follows the tilt direction so the paper "slides" the way it leans
+    animate(x, tiltDeg * 4.2, {
+      type: "spring",
+      stiffness: 85,
+      damping: 14,
+    });
+  };
+
+  // ── Swipe-to-dismiss (unchanged) ──────────────────────────────────────────
+  const DISMISS_X  = 140;
+  const DISMISS_Y  = 140;
+  const DISMISS_VX = 900;
+  const DISMISS_VY = 900;
 
   const handleDragEnd = (_event, info) => {
-
-    // console.log(info);
+    if (isDismissing) return;
 
     const dx = info.offset.x;
     const dy = info.offset.y;
@@ -54,71 +76,49 @@ export default function PaperModal({ product, onClose }) {
     const dismissByVelocity = Math.abs(vx) > DISMISS_VX || Math.abs(vy) > DISMISS_VY;
 
     if (dismissByDistance || dismissByVelocity) {
+      const useX = Math.abs(dx) + Math.abs(vx) * 0.2 >= Math.abs(dy) + Math.abs(vy) * 0.2;
 
-      //decide which axis wins (stronger gesture)
-      const useX = Math.abs(dx) * 1.0 + Math.abs(vx) * 0.2 >= Math.abs(dy) * 1.0 + Math.abs(vy) * 0.2;
-
-      if(useX){
-        const dirX = (dx !== 0 ? Math.sign(dx) : Math.sign(vx || 1));
-
-        animate(x, dirX * window.innerWidth, {
-          type: "spring",
-          stiffness: 260,
-          damping: 28,
-          onComplete: onClose,
-        });
-
-        //keep y stable during x-dismiss
-        animate(y, 0, {type: "spring", stiffness: 260, damping: 28});
-
-      }else{
-        const dirY = (dy !== 0 ? Math.sign(dy) : Math.sign(vy || 1));
-
-        animate(y, dirY * window.innerHeight, {
-          type: "spring",
-          stiffness: 260,
-          damping: 28,
-          onComplete: onClose,
-        });
-
-        //keep x stable during y-dismiss
-        animate(x, 0, {type: "spring", stiffness: 260, damping: 28});
-
+      if (useX) {
+        const dirX = dx !== 0 ? Math.sign(dx) : Math.sign(vx || 1);
+        animate(x, dirX * window.innerWidth,  { type: "spring", stiffness: 260, damping: 28, onComplete: onClose });
+        animate(y, 0,                          { type: "spring", stiffness: 260, damping: 28 });
+      } else {
+        const dirY = dy !== 0 ? Math.sign(dy) : Math.sign(vy || 1);
+        animate(y, dirY * window.innerHeight,  { type: "spring", stiffness: 260, damping: 28, onComplete: onClose });
+        animate(x, 0,                          { type: "spring", stiffness: 260, damping: 28 });
       }
-
-
-    }else{
-      //else snap back to center
-      animate(x, 0, {type: "spring", stiffness: 260, damping: 22});
-      animate(y, 0, {type: "spring", stiffness: 260, damping: 22});
-
+    } else {
+      animate(x, 0, { type: "spring", stiffness: 260, damping: 22 });
+      animate(y, 0, { type: "spring", stiffness: 260, damping: 22 });
     }
   };
 
-
-
-
-  // Overlay click directly calls onClose (immediate)
+  // ─────────────────────────────────────────────────────────────────────────
   return (
-    <motion.div className="modal-overlay"  onClick={() => onClose()}>
+    <motion.div
+      className="modal-overlay"
+      initial={{ backgroundColor: "rgba(250,250,249,0.9)" }}
+      animate={overlayControls}
+      onClick={handleOverlayClick}
+    >
 
       <motion.div
         className="paper-sheet"
         role="dialog"
         aria-modal="true"
 
-        
-        onClick={(e) => e.stopPropagation()}  // clicking inside does not close
-        
-        // ENTRY animation: from right to center
+        onClick={(e) => e.stopPropagation()}
+
+        // Entry: slides in from the left
         initial={{ x: -580, opacity: 1 }}
-        animate={{ x: 0, opacity: 1 }}
+        animate={{ x: 0,    opacity: 1 }}
         transition={{ type: "spring", stiffness: 140, damping: 18 }}
-        // DRAG behavior
-        drag
-        dragConstraints={{ left: 0, right: 0 , top: 0, bottom: 0}} // we control dismissal manually
-        dragElastic={0.18} // a little stretch
-        style={{ x, y }}
+
+        // Drag — disabled once the gravity fall starts
+        drag={!isDismissing}
+        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        dragElastic={0.18}
+        style={{ x, y, rotate }}
         onDragEnd={handleDragEnd}
       >
 
